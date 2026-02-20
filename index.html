@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>清水銘木 | あなたの木に、出会う。</title>
+<meta name="description" content="山口県防府市の天然木テーブル専門店。創業70年、数千枚の天然木から、あなただけの一本を。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Zen Kaku Gothic New',sans-serif;background:#faf6f1;color:#3a3028;overflow-x:hidden;line-height:2;font-weight:300;letter-spacing:.04em;font-size:16px}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{border:none;background:none;cursor:pointer;font-family:inherit}
+:root{
+  --bg:#faf6f1;--bg-warm:#f3ece3;--bg-cream:#ede5da;--bg-sand:#e6dcd0;
+  --bg-white:#fff;--bg-dark:#2a231c;--bg-card:rgba(255,255,255,.7);
+  --text:#3a3028;--text-light:#6b5d4f;--text-muted:#9a8b7a;--text-white:#faf6f1;
+  --accent:#8b6914;--accent-light:#b8943a;--accent-soft:#d4b86a;--accent-bg:rgba(139,105,20,.08);
+  --green:#2d6a4f;--green-light:#40916c;--line-green:#06C755;
+  --serif:'Shippori Mincho',serif;--sans:'Zen Kaku Gothic New',sans-serif;
+  --display:'Cormorant Garamond',serif;
+  --ease:cubic-bezier(.16,1,.3,1);--ease2:cubic-bezier(.25,1,.5,1);
+  --shadow:0 4px 30px rgba(58,48,40,.08);--shadow-lg:0 20px 60px rgba(58,48,40,.12);
+}
+
+/* === ORGANIC TEXTURE === */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.018;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px}
+
+/* === REVEAL ANIMATIONS === */
+.rv{opacity:0;transform:translateY(50px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.rv.v{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}.rv-d3{transition-delay:.36s}
+.rv-d4{transition-delay:.48s}.rv-d5{transition-delay:.6s}
+.rv-scale{opacity:0;transform:scale(.92);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+.rv-scale.v{opacity:1;transform:scale(1)}
+.rv-left{opacity:0;transform:translateX(-60px);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+.rv-left.v{opacity:1;transform:translateX(0)}
+.rv-right{opacity:0;transform:translateX(60px);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+.rv-right.v{opacity:1;transform:translateX(0)}
+
+/* char-by-char reveal */
+.char-reveal span{display:inline-block;opacity:0;transform:translateY(40px) rotate(3deg);transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.char-reveal.v span{opacity:1;transform:translateY(0) rotate(0)}
+
+/* === NAVIGATION === */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;transition:all .6s var(--ease)}
+.nav.scrolled{background:rgba(250,246,241,.92);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);padding:.8rem 2.5rem;box-shadow:0 1px 0 rgba(139,105,20,.1)}
+.nav-logo{font-family:var(--serif);font-size:1.35rem;font-weight:600;color:var(--text);letter-spacing:.12em}
+.nav-logo small{display:block;font-family:var(--display);font-size:.7rem;font-weight:300;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;margin-top:1px}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:.85rem;letter-spacing:.12em;color:var(--text-light);transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .4s var(--ease)}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;z-index:1001}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all .4s var(--ease)}
+
+/* === HERO === */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
+.hero-media{position:absolute;inset:0;overflow:hidden}
+.hero-media img{width:100%;height:100%;object-fit:cover;animation:heroKen 25s ease-in-out infinite alternate}
+@keyframes heroKen{0%{transform:scale(1.05) translate(0,0)}100%{transform:scale(1.12) translate(-2%,-1%)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,246,241,.2) 0%,rgba(250,246,241,.1) 30%,rgba(250,246,241,.5) 70%,rgba(250,246,241,.95) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem;margin-top:6rem}
+.hero-eyebrow{font-family:var(--display);font-size:.85rem;font-weight:300;letter-spacing:.4em;color:var(--accent);text-transform:uppercase;margin-bottom:2.5rem;opacity:0;animation:fadeUp 1.2s .4s var(--ease) forwards}
+.hero-title{font-family:var(--serif);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:400;color:var(--text);letter-spacing:.12em;line-height:1.5;margin-bottom:1.5rem;opacity:0;animation:fadeUp 1.4s .7s var(--ease) forwards}
+.hero-title em{font-style:normal;color:var(--accent);position:relative}
+.hero-title em::after{content:'';position:absolute;bottom:.1em;left:0;right:0;height:2px;background:var(--accent-soft);opacity:.5}
+.hero-sub{font-family:var(--serif);font-size:clamp(.9rem,2vw,1.15rem);font-weight:400;color:var(--text-light);letter-spacing:.18em;opacity:0;animation:fadeUp 1.3s 1s var(--ease) forwards}
+.hero-cta-wrap{margin-top:3rem;opacity:0;animation:fadeUp 1.2s 1.3s var(--ease) forwards}
+.hero-cta{display:inline-flex;align-items:center;gap:.8rem;padding:1rem 2.8rem;border:1.5px solid var(--accent);color:var(--accent);font-family:var(--serif);font-size:.9rem;letter-spacing:.12em;border-radius:60px;transition:all .5s var(--ease)}
+.hero-cta:hover{background:var(--accent);color:var(--text-white);transform:translateY(-2px);box-shadow:0 12px 40px rgba(139,105,20,.2)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;animation:fadeUp 1s 2s var(--ease) forwards}
+.hero-scroll span{font-family:var(--display);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted)}
+.scroll-dot{width:1px;height:40px;position:relative;overflow:hidden}
+.scroll-dot::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:scrollDown 2s ease-in-out infinite}
+@keyframes scrollDown{0%{top:-100%}50%{top:0}100%{top:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:translateY(0)}}
+
+/* === CINEMATIC VIDEO SECTION === */
+.cinema{position:relative;padding:0;overflow:hidden;background:var(--bg-dark);min-height:100vh;display:flex;align-items:center}
+.cinema-inner{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:6rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.cinema-text{color:var(--text-white)}
+.cinema-text .section-label{color:var(--accent-soft)}
+.cinema-text h2{font-family:var(--serif);font-size:clamp(1.8rem,4vw,3rem);font-weight:400;color:var(--text-white);letter-spacing:.08em;line-height:1.6;margin:.8rem 0 1.5rem}
+.cinema-text p{font-size:.95rem;color:rgba(250,246,241,.7);line-height:2;margin-bottom:2rem}
+/* auto-play crossfade "video" from photos */
+.cinema-gallery{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.cinema-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:none;transition:opacity 1.5s ease-in-out;transform:scale(1);will-change:opacity,transform}
+.cinema-gallery img.active{opacity:1;animation:cinemaZoom 8s ease-in-out forwards}
+@keyframes cinemaZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+.cinema-indicators{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:5}
+.cinema-dot{width:24px;height:2px;background:rgba(255,255,255,.3);border-radius:2px;transition:all .4s}
+.cinema-dot.active{background:var(--accent-soft);width:36px}
+
+/* === SECTION COMMON === */
+.section{padding:8rem 2rem;position:relative}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-family:var(--display);font-size:.72rem;font-weight:400;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:400;color:var(--text);letter-spacing:.08em;line-height:1.6;margin-bottom:1rem}
+.section-desc{font-size:.95rem;color:var(--text-light);max-width:600px;line-height:2}
+.gold-line{width:40px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-soft));margin:1.2rem 0;border-radius:2px}
+
+/* === BEFORE / AFTER === */
+.ba-section{padding:8rem 2rem;background:var(--bg-warm)}
+.ba-header{text-align:center;margin-bottom:4rem}
+.ba-showcase{max-width:900px;margin:0 auto}
+.ba-slider-wrap{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:col-resize;box-shadow:var(--shadow-lg)}
+.ba-slider-wrap::before{content:'';position:absolute;inset:0;border:1px solid rgba(139,105,20,.1);border-radius:16px;z-index:5;pointer-events:none}
+.ba-img{position:absolute;inset:0;background-size:cover;background-position:center}
+.ba-img.before{z-index:2;clip-path:inset(0 0 0 0)}
+.ba-img.after{z-index:1}
+.ba-divider{position:absolute;top:0;bottom:0;left:50%;width:3px;background:rgba(255,255,255,.9);z-index:10;transform:translateX(-50%);box-shadow:0 0 15px rgba(0,0,0,.2)}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(255,255,255,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.2);z-index:11;backdrop-filter:blur(10px)}
+.ba-handle svg{width:20px;height:20px;fill:var(--accent)}
+.ba-tag{position:absolute;top:1.2rem;z-index:15;font-family:var(--serif);font-size:.7rem;letter-spacing:.12em;color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);padding:.4rem 1.2rem;border-radius:30px}
+.ba-tag.tag-before{left:1.2rem}
+.ba-tag.tag-after{right:1.2rem}
+.ba-caption{text-align:center;margin-top:2rem}
+.ba-caption h3{font-family:var(--serif);font-size:1.4rem;color:var(--text);letter-spacing:.08em;margin-bottom:.5rem}
+.ba-caption p{font-size:.8rem;color:var(--text-muted);letter-spacing:.06em}
+.ba-caption .ai-note{font-size:.7rem;color:var(--text-muted);margin-top:.8rem;font-style:italic}
+.ba-nav{display:flex;justify-content:center;gap:1rem;margin-top:2.5rem}
+.ba-nav button{width:10px;height:10px;border-radius:50%;background:var(--bg-sand);border:none;cursor:pointer;transition:all .4s var(--ease);padding:0}
+.ba-nav button.active{background:var(--accent);transform:scale(1.2)}
+
+/* === STRENGTHS (horizontal scroll wow) === */
+.str-section{padding:6rem 0;background:var(--bg);overflow:hidden}
+.str-header{text-align:center;padding:0 2rem;margin-bottom:3rem}
+.str-track{display:flex;gap:2rem;padding:0 2rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}
+.str-track::-webkit-scrollbar{display:none}
+.str-card{flex:0 0 min(380px,80vw);scroll-snap-align:center;padding:3rem 2.5rem;border-radius:20px;background:var(--bg-white);box-shadow:var(--shadow);border:1px solid rgba(139,105,20,.06);transition:transform .5s var(--ease),box-shadow .5s var(--ease);position:relative;overflow:hidden}
+.str-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.str-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-soft),var(--accent-light));border-radius:3px 3px 0 0}
+.str-number{font-family:var(--display);font-size:clamp(3.5rem,7vw,5rem);font-weight:300;color:var(--accent);line-height:1;margin-bottom:.2rem;opacity:.85}
+.str-unit{font-family:var(--serif);font-size:.85rem;color:var(--accent);letter-spacing:.12em;margin-bottom:1.5rem}
+.str-card h3{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--text);letter-spacing:.06em;margin-bottom:.8rem}
+.str-card p{font-size:.85rem;color:var(--text-light);line-height:1.9}
+
+/* counter animation */
+.count-up{transition:all .05s}
+
+/* === PRODUCTS === */
+.products{padding:8rem 2rem;background:var(--bg-warm)}
+.products-header{text-align:center;margin-bottom:4rem}
+.products-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.p-card{position:relative;border-radius:16px;overflow:hidden;background:var(--bg-white);box-shadow:var(--shadow);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.p-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.p-card-img{position:relative;aspect-ratio:1;overflow:hidden}
+.p-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.p-card:hover .p-card-img img{transform:scale(1.06)}
+.p-card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(42,35,28,.7) 0%,transparent 50%);opacity:0;transition:opacity .5s;display:flex;align-items:flex-end;justify-content:center;padding:1.5rem}
+.p-card:hover .p-card-overlay{opacity:1}
+.p-card-btn{padding:.7rem 2rem;background:var(--bg-white);color:var(--accent);font-family:var(--serif);font-size:.8rem;letter-spacing:.08em;border-radius:40px;transform:translateY(15px);transition:transform .5s var(--ease);white-space:nowrap}
+.p-card:hover .p-card-btn{transform:translateY(0)}
+.p-card-info{padding:1.5rem}
+.p-card-name{font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--text);letter-spacing:.06em;margin-bottom:.2rem}
+.p-card-species{font-family:var(--display);font-size:.65rem;letter-spacing:.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:.8rem}
+.p-card-price{font-family:var(--display);font-size:1.4rem;font-weight:400;color:var(--accent)}
+.p-card-price small{font-size:.7rem;color:var(--text-muted);margin-left:.2rem;font-family:var(--sans)}
+
+/* === LINE CTA === */
+.line-cta{padding:6rem 2rem;background:var(--bg);position:relative;overflow:hidden}
+.line-cta::before{content:'';position:absolute;top:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,var(--accent-bg) 0%,transparent 70%);pointer-events:none}
+.line-inner{max-width:1000px;margin:0 auto;text-align:center}
+.line-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:3.5rem 0;position:relative}
+.line-steps::before{content:'';position:absolute;top:3.5rem;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--accent-soft),transparent)}
+.l-step{padding:2rem 1.5rem;position:relative;background:var(--bg-white);border-radius:16px;box-shadow:var(--shadow);border:1px solid rgba(139,105,20,.05)}
+.l-step-num{font-family:var(--display);font-size:2.5rem;font-weight:300;color:var(--accent);line-height:1;margin-bottom:1rem}
+.l-step h4{font-family:var(--serif);font-size:.95rem;font-weight:500;color:var(--text);letter-spacing:.06em;margin-bottom:.6rem}
+.l-step p{font-size:.82rem;color:var(--text-light);line-height:1.8}
+.btn-line{display:inline-flex;align-items:center;gap:.8rem;padding:1rem 3rem;background:var(--line-green);color:#fff;font-family:var(--serif);font-size:.95rem;letter-spacing:.08em;border-radius:60px;transition:all .4s var(--ease);box-shadow:0 8px 30px rgba(6,199,85,.25)}
+.btn-line:hover{background:#05b34c;transform:translateY(-2px);box-shadow:0 12px 40px rgba(6,199,85,.35)}
+.btn-line svg{width:20px;height:20px;fill:#fff}
+
+/* === SUBSCRIPTIONS === */
+.subs{padding:8rem 2rem;background:linear-gradient(180deg,var(--bg-warm) 0%,var(--bg) 100%)}
+.subs-inner{max-width:1100px;margin:0 auto}
+.subs-header{text-align:center;margin-bottom:4rem}
+.subs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.s-card{padding:2.5rem 2rem;border-radius:20px;background:var(--bg-white);box-shadow:var(--shadow);border:1px solid rgba(139,105,20,.06);transition:transform .5s var(--ease),box-shadow .5s;position:relative;overflow:hidden}
+.s-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.s-card.featured{border-color:var(--accent-soft);background:linear-gradient(160deg,#fffcf5,#fff9ee)}
+.s-card.featured::before{content:'おすすめ';position:absolute;top:1rem;right:-2rem;background:var(--accent);color:#fff;font-size:.65rem;letter-spacing:.1em;padding:.3rem 2.5rem;transform:rotate(35deg);font-family:var(--serif)}
+.s-badge{display:inline-block;padding:.25rem .8rem;background:var(--accent-bg);color:var(--accent);font-size:.68rem;letter-spacing:.1em;border-radius:20px;margin-bottom:1.2rem;font-family:var(--serif)}
+.s-card h3{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--text);letter-spacing:.06em;margin-bottom:.2rem}
+.s-card .s-en{font-family:var(--display);font-size:.65rem;letter-spacing:.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:1rem}
+.s-price{font-family:var(--display);font-size:2rem;font-weight:400;color:var(--accent);margin-bottom:1.2rem}
+.s-price small{font-size:.75rem;color:var(--text-muted);font-family:var(--sans)}
+.s-features{list-style:none;margin-bottom:1.8rem}
+.s-features li{font-size:.82rem;color:var(--text-light);padding:.45rem 0 .45rem 1.4rem;position:relative;border-bottom:1px solid rgba(139,105,20,.05)}
+.s-features li::before{content:'';position:absolute;left:0;top:50%;width:6px;height:6px;border:1.5px solid var(--accent-soft);border-radius:50%;transform:translateY(-50%)}
+.btn-outline{display:inline-flex;align-items:center;gap:.7rem;padding:.75rem 1.8rem;border:1.5px solid var(--accent);color:var(--accent);font-family:var(--serif);font-size:.82rem;letter-spacing:.08em;border-radius:40px;transition:all .4s var(--ease)}
+.btn-outline:hover{background:var(--accent);color:#fff}
+.btn-outline svg{width:14px;height:14px;transition:transform .4s var(--ease)}
+.btn-outline:hover svg{transform:translateX(3px)}
+
+/* === WORKS === */
+.works{padding:8rem 2rem;background:var(--bg)}
+.works-inner{max-width:1200px;margin:0 auto}
+.works-header{text-align:center;margin-bottom:4rem}
+.works-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto;gap:1.2rem}
+.w-card{position:relative;border-radius:12px;overflow:hidden;cursor:pointer}
+.w-card:nth-child(1){grid-column:1/5}.w-card:nth-child(2){grid-column:5/9}
+.w-card:nth-child(3){grid-column:9/13}.w-card:nth-child(4){grid-column:1/7}
+.w-card:nth-child(5){grid-column:7/13}
+.w-card-img{aspect-ratio:16/10;overflow:hidden}
+.w-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.w-card:hover .w-card-img img{transform:scale(1.05)}
+.w-card-info{position:absolute;inset:0;background:linear-gradient(0deg,rgba(42,35,28,.75) 0%,transparent 50%);display:flex;align-items:flex-end;padding:1.5rem;opacity:0;transition:opacity .5s}
+.w-card:hover .w-card-info{opacity:1}
+.w-card-info h4{font-family:var(--serif);font-size:.95rem;color:var(--text-white);letter-spacing:.06em}
+.w-card-info p{font-size:.7rem;color:rgba(250,246,241,.6);letter-spacing:.08em;margin-top:.3rem}
+
+/* === ABOUT === */
+.about{padding:8rem 2rem;background:var(--bg-warm)}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img{border-radius:16px;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-lg);position:relative}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-img::after{content:'';position:absolute;inset:0;border:1px solid rgba(139,105,20,.08);border-radius:16px}
+.about-text .about-body{font-family:var(--serif);font-size:.95rem;color:var(--text-light);line-height:2.3;margin-bottom:2rem}
+.about-list{list-style:none}
+.about-list li{display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid rgba(139,105,20,.08);font-size:.85rem}
+.about-list .label{color:var(--text-muted);font-size:.72rem;letter-spacing:.08em}
+.about-list .val{color:var(--text)}
+.about-sns{display:flex;gap:.8rem;margin-top:1.5rem}
+.about-sns a{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(139,105,20,.15);border-radius:50%;transition:all .3s}
+.about-sns a:hover{border-color:var(--accent);background:var(--accent-bg)}
+.about-sns svg{width:17px;height:17px;fill:var(--text-light)}
+
+/* === CONTACT === */
+.contact{position:relative;padding:8rem 2rem;background:var(--bg)}
+.contact-inner{max-width:1100px;margin:0 auto}
+.contact-header{text-align:center;margin-bottom:4rem}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.c-card{padding:2.5rem 2rem;text-align:center;border-radius:20px;background:var(--bg-white);box-shadow:var(--shadow);border:1px solid rgba(139,105,20,.06);transition:transform .5s var(--ease),box-shadow .5s}
+.c-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.c-card-icon{width:56px;height:56px;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--accent-bg)}
+.c-card-icon svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.5}
+.c-card h3{font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--text);letter-spacing:.06em;margin-bottom:.6rem}
+.c-card p{font-size:.82rem;color:var(--text-light);line-height:1.9;margin-bottom:1.5rem}
+.btn-contact{display:inline-block;padding:.75rem 2rem;border-radius:40px;font-family:var(--serif);font-size:.8rem;letter-spacing:.08em;transition:all .4s var(--ease)}
+.btn-contact.line-btn{background:var(--line-green);color:#fff}
+.btn-contact.line-btn:hover{background:#05b34c;transform:translateY(-2px)}
+.btn-contact.gold-btn{border:1.5px solid var(--accent);color:var(--accent)}
+.btn-contact.gold-btn:hover{background:var(--accent);color:#fff}
+.btn-contact.phone-btn{border:1.5px solid var(--text-muted);color:var(--text-light)}
+.btn-contact.phone-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* === FOOTER === */
+.footer{padding:3rem 2rem 7rem;background:var(--bg-cream);text-align:center;border-top:1px solid rgba(139,105,20,.08)}
+.footer-logo{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--text);letter-spacing:.12em;margin-bottom:.2rem}
+.footer-tag{font-family:var(--display);font-size:.65rem;letter-spacing:.25em;color:var(--accent);margin-bottom:1.5rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;list-style:none}
+.footer-links a{font-size:.72rem;color:var(--text-muted);letter-spacing:.08em;transition:color .3s}
+.footer-links a:hover{color:var(--accent)}
+.footer-copy{font-size:.68rem;color:var(--text-muted);letter-spacing:.08em}
+
+/* === FLOATING CTA === */
+.float-cta{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;transform:translateY(100%);transition:transform .6s var(--ease)}
+.float-cta.show{transform:translateY(0)}
+.float-cta a{flex:1;display:flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem;font-family:var(--serif);font-size:.88rem;letter-spacing:.08em;font-weight:500;transition:filter .3s}
+.float-cta a:hover{filter:brightness(1.08)}
+.float-cta .f-line{background:var(--line-green);color:#fff}
+.float-cta .f-phone{background:var(--bg-white);color:var(--accent);border-top:1px solid rgba(139,105,20,.12)}
+.float-cta svg{width:18px;height:18px}
+.float-cta .f-line svg{fill:#fff}
+.float-cta .f-phone svg{stroke:var(--accent);fill:none;stroke-width:1.5}
+
+/* === MOBILE NAV OVERLAY === */
+.mob-nav{position:fixed;inset:0;z-index:998;background:rgba(250,246,241,.97);backdrop-filter:blur(30px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.mob-nav.open{opacity:1;pointer-events:all}
+.mob-nav ul{list-style:none;text-align:center}
+.mob-nav li{margin:1.8rem 0}
+.mob-nav a{font-family:var(--serif);font-size:1.4rem;letter-spacing:.12em;color:var(--text);transition:color .3s}
+.mob-nav a:hover{color:var(--accent)}
+
+/* === RESPONSIVE === */
+@media(max-width:900px){
+  .nav-links{display:none}.hamburger{display:flex}
+  .cinema-inner{grid-template-columns:1fr;gap:3rem;padding:4rem 2rem}
+  .str-card{flex:0 0 85vw}
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  .line-steps{grid-template-columns:1fr;gap:1.2rem}
+  .line-steps::before{display:none}
+  .subs-grid{grid-template-columns:1fr}
+  .works-grid{grid-template-columns:1fr 1fr}
+  .w-card:nth-child(1),.w-card:nth-child(2),.w-card:nth-child(3),.w-card:nth-child(4),.w-card:nth-child(5){grid-column:auto}
+  .about-inner{grid-template-columns:1fr;gap:3rem}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .section{padding:5rem 1.2rem}
+  .hero{min-height:100svh}
+  .products-grid{grid-template-columns:1fr 1fr;gap:.8rem}
+  .p-card-info{padding:1rem}
+  .p-card-name{font-size:.9rem}
+  .works-grid{grid-template-columns:1fr}
+  .nav{padding:1rem 1.2rem}
+  .nav.scrolled{padding:.7rem 1.2rem}
+  .cinema-inner{padding:3rem 1.5rem}
+  .s-card{padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">清水銘木<small>Natural Wood Atelier</small></a>
+  <ul class="nav-links">
+    <li><a href="#transform">AI Gallery</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#plans">Plan</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#connect">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hb" aria-label="メニュー"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <ul>
+    <li><a href="#transform" onclick="closeNav()">AI Gallery</a></li>
+    <li><a href="#collection" onclick="closeNav()">Collection</a></li>
+    <li><a href="#plans" onclick="closeNav()">Plan</a></li>
+    <li><a href="#works" onclick="closeNav()">Works</a></li>
+    <li><a href="#about" onclick="closeNav()">About</a></li>
+    <li><a href="#connect" onclick="closeNav()">Contact</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-media"><img src="images/hero_bg.jpg" alt="天然木"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Shimizu Meiboku — Since 1950</p>
+    <h1 class="hero-title">あなたの<em>木</em>に、出会う。</h1>
+    <p class="hero-sub">世界にひとつだけの木を、あなたの暮らしへ。</p>
+    <div class="hero-cta-wrap">
+      <a href="#transform" class="hero-cta">天然木ギャラリーを見る
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-dot"></div></div>
+</section>
+
+<!-- CINEMATIC "VIDEO" SECTION — auto-playing photo slideshow with Ken Burns -->
+<section class="cinema" id="cinema">
+  <div class="cinema-inner">
+    <div class="cinema-text rv">
+      <p class="section-label">The Transformation</p>
+      <h2 class="char-reveal" id="cinemaTitle">一本の原木が、<br>暮らしを変える。</h2>
+      <p>山口の倉庫で10年以上の時間をかけて眠っていた天然木。<br>それが、あなたの部屋で新しい命を吹き込まれます。<br><br>AIが描く完成イメージで、<br>まだ見ぬテーブルとの出会いを体験してください。</p>
+      <a href="#transform" class="btn-outline" style="margin-top:.5rem">
+        ビフォーアフターを見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="cinema-gallery rv rv-d2" id="cinemaGallery">
+      <img src="before.png" alt="原木" class="active">
+      <img src="after.png" alt="完成テーブル">
+      <img src="images/collection4.jpg" alt="赤楠">
+      <img src="images/work_miyabi.jpg" alt="納品事例">
+      <img src="images/features2.jpg" alt="倉庫">
+      <div class="cinema-indicators" id="cinemaIndicators">
+        <div class="cinema-dot active"></div>
+        <div class="cinema-dot"></div>
+        <div class="cinema-dot"></div>
+        <div class="cinema-dot"></div>
+        <div class="cinema-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="ba-section" id="transform">
+  <div class="ba-header rv">
+    <p class="section-label">AI Before / After</p>
+    <h2 class="section-title">あなたの部屋に、この木を。</h2>
+    <p class="section-desc" style="margin:0 auto">天然木の板が、暮らしの中でどんなテーブルになるか。<br>スライダーを動かして、変化をご覧ください。</p>
+  </div>
+  <div class="ba-showcase rv-scale">
+    <!-- single large slider, cycle-able -->
+    <div class="ba-slider-wrap" id="baSlider" data-ba>
+      <div class="ba-img before" id="baBefore" style="background-image:url('before.png')"></div>
+      <div class="ba-img after" id="baAfter" style="background-image:url('after.png')"></div>
+      <div class="ba-divider" id="baDivider">
+        <div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      </div>
+      <span class="ba-tag tag-before">Before</span>
+      <span class="ba-tag tag-after">After</span>
+    </div>
+    <div class="ba-caption">
+      <h3 id="baTitle">天然木が、和の空間に溶け込む。</h3>
+      <p id="baDesc">原木の姿から、AIが完成イメージを生成しました。</p>
+      <p class="ai-note">※ AIによる生成画像です。実際の仕上がりとは異なる場合があります。</p>
+    </div>
+    <div class="ba-nav" id="baNav">
+      <button class="active" data-idx="0"></button>
+      <button data-idx="1"></button>
+      <button data-idx="2"></button>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS — horizontal scroll cards -->
+<section class="str-section" id="strengths">
+  <div class="str-header rv">
+    <p class="section-label">Why Shimizu</p>
+    <h2 class="section-title">選ばれる、三つの理由。</h2>
+  </div>
+  <div class="str-track" id="strTrack">
+    <div style="flex:0 0 max(0px,calc((100vw - 1200px)/2))"></div>
+    <div class="str-card rv rv-d1">
+      <div class="str-number" data-count="70">0</div>
+      <div class="str-unit">年の歴史</div>
+      <h3>創業70年の信頼</h3>
+      <p>三世代にわたり天然木と向き合い続けてきた経験と知識。神社仏閣から個人のお客様まで、確かな品質をお届けします。</p>
+    </div>
+    <div class="str-card rv rv-d2">
+      <div class="str-number" data-count="1000">0</div>
+      <div class="str-unit">枚以上の在庫</div>
+      <h3>圧巻の天然木在庫</h3>
+      <p>数千枚規模の天然木を保管する倉庫。26種以上の樹種から、あなたの暮らしに合う一本が必ず見つかります。</p>
+    </div>
+    <div class="str-card rv rv-d3">
+      <div class="str-number" data-count="10">0</div>
+      <div class="str-unit">年以上の自然乾燥</div>
+      <h3>自然乾燥へのこだわり</h3>
+      <p>機械乾燥は1週間。私たちは10年以上かけて自然乾燥。木本来の香り・粘り・美しさを最大限に引き出します。</p>
+    </div>
+    <div style="flex:0 0 max(0px,calc((100vw - 1200px)/2))"></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="collection">
+  <div class="products-header rv">
+    <p class="section-label">Collection</p>
+    <h2 class="section-title">天然木コレクション</h2>
+    <p class="section-desc" style="margin:0 auto">在庫の一部をご紹介します。実際の倉庫には数千枚の天然木をご用意しています。</p>
+  </div>
+  <div class="products-grid">
+    <div class="p-card rv rv-d1"><div class="p-card-img"><img src="images/collection4.jpg" alt="赤楠" loading="lazy"><div class="p-card-overlay"><a href="https://lin.ee/pwMRa8P" class="p-card-btn" target="_blank" rel="noopener">この木について聞く</a></div></div><div class="p-card-info"><h3 class="p-card-name">赤楠（あかくす）</h3><p class="p-card-species">Red Camphor</p><p class="p-card-price">&yen;385,000<small>（税込）</small></p></div></div>
+    <div class="p-card rv rv-d2"><div class="p-card-img"><img src="images/collection_tochi.jpg" alt="栃" loading="lazy"><div class="p-card-overlay"><a href="https://lin.ee/pwMRa8P" class="p-card-btn" target="_blank" rel="noopener">この木について聞く</a></div></div><div class="p-card-info"><h3 class="p-card-name">栃（とち）</h3><p class="p-card-species">Japanese Horse Chestnut</p><p class="p-card-price">&yen;350,000<small>（税込）</small></p></div></div>
+    <div class="p-card rv rv-d3"><div class="p-card-img"><img src="images/collection6.jpg" alt="欅" loading="lazy"><div class="p-card-overlay"><a href="https://lin.ee/pwMRa8P" class="p-card-btn" target="_blank" rel="noopener">この木について聞く</a></div></div><div class="p-card-info"><h3 class="p-card-name">欅（けやき）</h3><p class="p-card-species">Zelkova</p><p class="p-card-price">&yen;280,000<small>（税込）</small></p></div></div>
+    <div class="p-card rv rv-d1"><div class="p-card-img"><img src="images/collection1.jpg" alt="屋久栂" loading="lazy"><div class="p-card-overlay"><a href="https://lin.ee/pwMRa8P" class="p-card-btn" target="_blank" rel="noopener">この木について聞く</a></div></div><div class="p-card-info"><h3 class="p-card-name">屋久栂（やくつが）</h3><p class="p-card-species">Yakushima Hemlock</p><p class="p-card-price">&yen;250,000<small>（税込）</small></p></div></div>
+    <div class="p-card rv rv-d2"><div class="p-card-img"><img src="images/collection3.jpg" alt="楠" loading="lazy"><div class="p-card-overlay"><a href="https://lin.ee/pwMRa8P" class="p-card-btn" target="_blank" rel="noopener">この木について聞く</a></div></div><div class="p-card-info"><h3 class="p-card-name">楠（くすのき）</h3><p class="p-card-species">Camphor</p><p class="p-card-price">&yen;240,000<small>（税込）</small></p></div></div>
+    <div class="p-card rv rv-d3"><div class="p-card-img"><img src="images/collection7.jpg" alt="栴檀" loading="lazy"><div class="p-card-overlay"><a href="https://lin.ee/pwMRa8P" class="p-card-btn" target="_blank" rel="noopener">この木について聞く</a></div></div><div class="p-card-info"><h3 class="p-card-name">栴檀（せんだん）</h3><p class="p-card-species">Chinaberry</p><p class="p-card-price">&yen;150,000<small>（税込）</small></p></div></div>
+  </div>
+</section>
+
+<!-- LINE CTA -->
+<section class="line-cta" id="line-cta">
+  <div class="line-inner rv">
+    <p class="section-label">Photo Estimate</p>
+    <h2 class="section-title">写真を送るだけで、お見積もり。</h2>
+    <p class="section-desc" style="margin:0 auto">お部屋の写真をLINEで送るだけ。あなたのお部屋に合う天然木テーブルを、AIの完成イメージ付きでご提案します。</p>
+    <div class="line-steps">
+      <div class="l-step rv rv-d1">
+        <div class="l-step-num">01</div>
+        <h4>お部屋の写真を撮る</h4>
+        <p>テーブルを置きたい場所の写真をスマホで撮影するだけ。</p>
+      </div>
+      <div class="l-step rv rv-d2">
+        <div class="l-step-num">02</div>
+        <h4>LINEで写真を送る</h4>
+        <p>清水銘木のLINEに写真を送信。あなたに合う木をご提案します。</p>
+      </div>
+      <div class="l-step rv rv-d3">
+        <div class="l-step-num">03</div>
+        <h4>AI完成イメージが届く</h4>
+        <p>お部屋に天然木テーブルが置かれたイメージ画像をお届けします。</p>
+      </div>
+    </div>
+    <a href="https://lin.ee/pwMRa8P" class="btn-line" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 1C5.9 1 1 5.4 1 10.8c0 4.8 4.2 8.9 9.8 9.6.4.1.9.2 1 .6.1.3.1.7 0 1l-.2 1c0 .3-.2 1.1 1 .6 1.2-.5 6.4-3.8 8.8-6.5C23.3 15.1 24 13.1 24 10.8 24 5.4 18.6 1 12 1z"/></svg>
+      LINEで写真を送る
+    </a>
+  </div>
+</section>
+
+<!-- SUBSCRIPTIONS -->
+<section class="subs" id="plans">
+  <div class="subs-inner">
+    <div class="subs-header rv">
+      <p class="section-label">Subscription</p>
+      <h2 class="section-title">木のある暮らし、はじめませんか。</h2>
+      <p class="section-desc" style="margin:0 auto">天然木をもっと身近に。月額プランで、あなたの暮らしに本物の木を。</p>
+    </div>
+    <div class="subs-grid">
+      <div class="s-card rv rv-d1">
+        <span class="s-badge">SNS話題性 No.1</span>
+        <h3>MEIBOKU BOX</h3>
+        <p class="s-en">Monthly Mystery Wood Box</p>
+        <p class="s-price">&yen;3,980<small>/月</small></p>
+        <ul class="s-features">
+          <li>毎月届く天然木の端材BOX</li>
+          <li>何の木が届くかは開けてみるまでわからない</li>
+          <li>レア度付きコレクションカード同梱</li>
+          <li>屋久杉・黒柿など超レアが当たることも</li>
+          <li>コンプリートでテーブル購入割引</li>
+        </ul>
+        <a href="https://lin.ee/pwMRa8P" class="btn-outline" target="_blank" rel="noopener">詳しく聞く <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="s-card featured rv rv-d2">
+        <span class="s-badge">問い合わせ直結</span>
+        <h3>天然木テーブル リース</h3>
+        <p class="s-en">Natural Wood Table Lease</p>
+        <p class="s-price">&yen;8,000〜<small>/月</small></p>
+        <ul class="s-features">
+          <li>天然木テーブルを月額でレンタル</li>
+          <li>まず、置いてみる。暮らしに合うか確かめる</li>
+          <li>6ヶ月後に買取・交換・返却を選択</li>
+          <li>買取時はレンタル料を価格に充当</li>
+          <li>「30万円の即決」が不要に</li>
+        </ul>
+        <a href="https://lin.ee/pwMRa8P" class="btn-outline" target="_blank" rel="noopener">詳しく聞く <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="s-card rv rv-d3">
+        <span class="s-badge">ファンコミュニティ</span>
+        <h3>清水銘木サロン</h3>
+        <p class="s-en">Community Membership</p>
+        <p class="s-price">&yen;1,500<small>/月</small></p>
+        <ul class="s-features">
+          <li>新入荷の天然木を会員限定で先行公開</li>
+          <li>月1回のオンライン木の講座</li>
+          <li>会員限定価格でのご購入</li>
+          <li>年2回の倉庫見学イベントご招待</li>
+          <li>清水銘木と直接つながるコミュニティ</li>
+        </ul>
+        <a href="https://lin.ee/pwMRa8P" class="btn-outline" target="_blank" rel="noopener">詳しく聞く <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="works" id="works">
+  <div class="works-inner">
+    <div class="works-header rv">
+      <p class="section-label">Works</p>
+      <h2 class="section-title">納品事例</h2>
+      <p class="section-desc" style="margin:0 auto">飲食店・オフィス・寺院・ご自宅まで。清水銘木の天然木が活きる空間をご紹介します。</p>
+    </div>
+    <div class="works-grid">
+      <div class="w-card rv rv-d1"><div class="w-card-img"><img src="images/work_office.jpg" alt="おおオフィス" loading="lazy"></div><div class="w-card-info"><div><h4>おおオフィス</h4><p>山口県防府市</p></div></div></div>
+      <div class="w-card rv rv-d2"><div class="w-card-img"><img src="images/work_miyabi.jpg" alt="実やび" loading="lazy"></div><div class="w-card-info"><div><h4>実やび</h4><p>山口県山口市</p></div></div></div>
+      <div class="w-card rv rv-d3"><div class="w-card-img"><img src="images/work_koyaba.jpg" alt="小屋場只只" loading="lazy"></div><div class="w-card-info"><div><h4>小屋場只只</h4><p>山口県周南市 大津島</p></div></div></div>
+      <div class="w-card rv rv-d1"><div class="w-card-img"><img src="images/work_rita.jpg" alt="りた" loading="lazy"></div><div class="w-card-info"><div><h4>りた</h4><p>東京・駒場東大前駅</p></div></div></div>
+      <div class="w-card rv rv-d2"><div class="w-card-img"><img src="images/work_hoshoan.jpg" alt="芳松庵" loading="lazy"></div><div class="w-card-info"><div><h4>芳松庵</h4><p>防府天満宮</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img rv-left"><img src="images/features2.jpg" alt="清水銘木の倉庫" loading="lazy"></div>
+    <div class="about-text rv-right">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">清水銘木について</h2>
+      <div class="gold-line"></div>
+      <p class="about-body">山口県防府市で創業70年。<br>丸太の仕入れから製材、乾燥、加工まで一貫して手がける天然木の専門店です。<br><br>数千枚の天然木を10年以上かけて自然乾燥させることで、木本来の香りと粘りを最大限に引き出しています。</p>
+      <ul class="about-list">
+        <li><span class="label">所在地</span><span class="val">山口県防府市大字富海 948-1</span></li>
+        <li><span class="label">電話</span><span class="val">0835-34-0779</span></li>
+        <li><span class="label">営業時間</span><span class="val">9:00 - 17:00（要予約）</span></li>
+      </ul>
+      <div class="about-sns">
+        <a href="https://www.instagram.com/shimizumeiboku_official/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="connect">
+  <div class="contact-inner">
+    <div class="contact-header rv">
+      <p class="section-label">Connect</p>
+      <h2 class="section-title">あなたの木を、<br>一緒に探します。</h2>
+      <p class="section-desc" style="margin:0 auto">お問い合わせは、お気軽にどうぞ。<br>どの方法でも、清水銘木が直接お応えします。</p>
+    </div>
+    <div class="contact-grid">
+      <div class="c-card rv rv-d1">
+        <div class="c-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <h3>写真を送るだけ見積もり</h3>
+        <p>お部屋の写真をLINEで送信。あなたに合う天然木テーブルを、AI完成イメージ付きでご提案します。</p>
+        <a href="https://lin.ee/pwMRa8P" class="btn-contact line-btn" target="_blank" rel="noopener">LINEで写真を送る</a>
+      </div>
+      <div class="c-card rv rv-d2">
+        <div class="c-card-icon"><svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg></div>
+        <h3>5つの質問に答えるだけ</h3>
+        <p>用途・人数・雰囲気・予算・連絡先を教えていただくだけで、最適な天然木を3点ご提案します。</p>
+        <a href="https://lin.ee/pwMRa8P" class="btn-contact gold-btn" target="_blank" rel="noopener">ヒアリングシートへ</a>
+      </div>
+      <div class="c-card rv rv-d3">
+        <div class="c-card-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.36 1.75.7 2.58a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.83.34 1.7.57 2.58.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h3>お電話でのご相談</h3>
+        <p>「天然木テーブルが気になる」その一言だけで大丈夫です。清水銘木が直接お話を伺います。</p>
+        <a href="tel:0835-34-0779" class="btn-contact phone-btn">0835-34-0779</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer-logo">清水銘木</p>
+  <p class="footer-tag">Natural Wood Atelier</p>
+  <ul class="footer-links">
+    <li><a href="#hero">Top</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#connect">Contact</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2026 有限会社 清水銘木. All rights reserved.</p>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="float-cta" id="floatCta">
+  <a href="https://lin.ee/pwMRa8P" class="f-line" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M12 1C5.9 1 1 5.4 1 10.8c0 4.8 4.2 8.9 9.8 9.6.4.1.9.2 1 .6.1.3.1.7 0 1l-.2 1c0 .3-.2 1.1 1 .6 1.2-.5 6.4-3.8 8.8-6.5C23.3 15.1 24 13.1 24 10.8 24 5.4 18.6 1 12 1z"/></svg>
+    LINEで相談する
+  </a>
+  <a href="tel:0835-34-0779" class="f-phone">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.36 1.75.7 2.58a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.83.34 1.7.57 2.58.7A2 2 0 0 1 22 16.92z"/></svg>
+    電話する
+  </a>
+</div>
+
+<script>
+// === SCROLL REVEAL ===
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('v') })
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv,.rv-scale,.rv-left,.rv-right,.char-reveal').forEach(el => ro.observe(el));
+
+// === CHAR-BY-CHAR REVEAL ===
+document.querySelectorAll('.char-reveal').forEach(el => {
+  const parts = el.innerHTML.split(/<br\s*\/?>/gi);
+  let idx = 0;
+  const result = parts.map(part => {
+    const text = part.replace(/<[^>]*>/g, '');
+    return [...text].map(c => {
+      if (c === ' ') return ' ';
+      return `<span style="transition-delay:${(idx++) * .04}s">${c}</span>`;
+    }).join('');
+  }).join('<br>');
+  el.innerHTML = result;
+});
+
+// === NAV ===
+const nav = document.getElementById('nav');
+const floatCta = document.getElementById('floatCta');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  nav.classList.toggle('scrolled', s > 80);
+  floatCta.classList.toggle('show', s > window.innerHeight * .5);
+}, { passive: true });
+
+// === MOBILE NAV ===
+const hb = document.getElementById('hb');
+const mobNav = document.getElementById('mobNav');
+let menuOpen = false;
+hb.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobNav.classList.toggle('open', menuOpen);
+  const spans = hb.querySelectorAll('span');
+  if (menuOpen) {
+    spans[0].style.transform = 'rotate(45deg) translate(4px,4px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(4px,-4px)';
+  } else {
+    spans.forEach(s => { s.style.transform = 'none'; s.style.opacity = '1'; });
+  }
+});
+function closeNav() {
+  menuOpen = false;
+  mobNav.classList.remove('open');
+  hb.querySelectorAll('span').forEach(s => { s.style.transform = 'none'; s.style.opacity = '1'; });
+}
+
+// === CINEMA SLIDESHOW ===
+(function() {
+  const gallery = document.getElementById('cinemaGallery');
+  if (!gallery) return;
+  const imgs = gallery.querySelectorAll('img');
+  const dots = document.querySelectorAll('#cinemaIndicators .cinema-dot');
+  let current = 0;
+  const total = imgs.length;
+
+  function showSlide(idx) {
+    imgs.forEach((img, i) => {
+      img.classList.remove('active');
+      img.style.animation = 'none';
+    });
+    dots.forEach(d => d.classList.remove('active'));
+    imgs[idx].classList.add('active');
+    imgs[idx].style.animation = 'none';
+    void imgs[idx].offsetWidth; // reflow
+    imgs[idx].style.animation = 'cinemaZoom 8s ease-in-out forwards';
+    if (dots[idx]) dots[idx].classList.add('active');
+    current = idx;
+  }
+
+  setInterval(() => {
+    showSlide((current + 1) % total);
+  }, 4000);
+})();
+
+// === BEFORE/AFTER SLIDER ===
+const baData = [
+  { before: 'before.png', after: 'after.png', title: '天然木が、和の空間に溶け込む。', desc: '原木の姿から、AIが完成イメージを生成しました。' },
+  { before: 'images/collection4.jpg', after: 'images/work_office.jpg', title: '赤楠が、オフィスに温もりを。', desc: '天然木テーブルが空間の印象を一変させます。' },
+  { before: 'images/collection6.jpg', after: 'images/work_miyabi.jpg', title: '欅が、お店の顔になる。', desc: '力強い木目が、上質な空間を演出します。' }
+];
+
+(function() {
+  const slider = document.getElementById('baSlider');
+  if (!slider) return;
+  const beforeEl = document.getElementById('baBefore');
+  const afterEl = document.getElementById('baAfter');
+  const divider = document.getElementById('baDivider');
+  const titleEl = document.getElementById('baTitle');
+  const descEl = document.getElementById('baDesc');
+  const navBtns = document.querySelectorAll('#baNav button');
+  let isDrag = false;
+  let currentBA = 0;
+
+  function setSlide(idx) {
+    const d = baData[idx];
+    beforeEl.style.backgroundImage = `url('${d.before}')`;
+    afterEl.style.backgroundImage = `url('${d.after}')`;
+    titleEl.textContent = d.title;
+    descEl.textContent = d.desc;
+    navBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+    // reset divider to 50%
+    beforeEl.style.clipPath = 'inset(0 50% 0 0)';
+    divider.style.left = '50%';
+    currentBA = idx;
+  }
+
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', () => setSlide(parseInt(btn.dataset.idx)));
+  });
+
+  function update(x) {
+    const rect = slider.getBoundingClientRect();
+    let pct = ((x - rect.left) / rect.width) * 100;
+    pct = Math.max(3, Math.min(97, pct));
+    // Before image clips from the RIGHT at (100 - pct)%
+    // So before shows on LEFT from 0 to pct
+    beforeEl.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    divider.style.left = pct + '%';
+  }
+
+  function startDrag(e) { isDrag = true; e.preventDefault(); }
+  function onDrag(e) { if (!isDrag) return; update(e.touches ? e.touches[0].clientX : e.clientX); }
+  function endDrag() { isDrag = false; }
+
+  divider.addEventListener('mousedown', startDrag);
+  divider.addEventListener('touchstart', startDrag, { passive: false });
+  slider.addEventListener('mousedown', e => { isDrag = true; update(e.clientX); });
+  slider.addEventListener('touchstart', e => { isDrag = true; update(e.touches[0].clientX); }, { passive: false });
+  window.addEventListener('mousemove', onDrag);
+  window.addEventListener('touchmove', onDrag, { passive: false });
+  window.addEventListener('mouseup', endDrag);
+  window.addEventListener('touchend', endDrag);
+})();
+
+// === COUNT-UP ANIMATION ===
+const countObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.count);
+    const duration = 2000;
+    const start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 4);
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(ease(progress) * target).toLocaleString();
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target >= 1000 ? target.toLocaleString() + '+' : target;
+    }
+    requestAnimationFrame(tick);
+    countObserver.unobserve(el);
+  });
+}, { threshold: .5 });
+document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+// === SMOOTH ANCHOR ===
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// === HERO PARALLAX ===
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const heroImg = document.querySelector('.hero-media img');
+  if (s < window.innerHeight && heroImg) {
+    heroImg.style.transform = `scale(${1.05 + s * .00005}) translateY(${s * .25}px)`;
+  }
+}, { passive: true });
+</script>
+</body>
+</html>
