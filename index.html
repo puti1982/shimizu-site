@@ -908,11 +908,16 @@ const baData = [
     titleEl.textContent = d.title;
     descEl.textContent = d.desc;
     navBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+    // All images use cover to fill without blank space
+    beforeEl.style.backgroundSize = 'cover';
+    // Apply smoothing for low-res before images
     if (idx >= 1) {
-      beforeEl.classList.add('contain-mode');
+      beforeEl.classList.add('smooth-upscale');
     } else {
-      beforeEl.classList.remove('contain-mode');
+      beforeEl.classList.remove('smooth-upscale');
     }
+    // Adjust background-position per image for best framing
+    beforeEl.style.backgroundPosition = d.bgPos || 'center';
     beforeEl.style.clipPath = 'inset(0 50% 0 0)';
     divider.style.left = '50%';
   }
